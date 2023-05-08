@@ -72,6 +72,62 @@ app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:htt
 const staticpath = args.stat || args.s || process.env.STATICPATH || path.join(__dirname, 'public')
 app.use('/', express.static(staticpath))
 // Create app listener
+
+
+// 3. READ (HTTP method GET) at root endpoint /app/
+app.get('/app/', (req, res, next) => {
+    res.status(200).send('200 OK');
+	
+});
+
+// 4. rps single
+app.get("/app/rps/", (req, res) => {
+    res.status(200).json(rps());
+});
+
+// 5. rpsls single
+app.get("/app/rpsls/", (req, res) => {
+    res.status(200).json(rpsls());
+});
+
+
+// 6. rps opponent
+app.get('/app/rps/play/', (req, res, next) => {
+    res.status(200).send(rps(req.query.shot));
+})
+
+// 7. rpsls opponent
+app.get('/app/rpsls/play/', (req, res, next) => {
+    res.status(200).send(rpsls(req.query.shot));
+})
+
+// 8. rps JSON
+app.post('/app/rps/play/', (req, res, next) => {
+    res.status(200).json(rps(req.body.shot));
+})
+
+// 9. rpsls JSON
+app.post('/app/rpsls/play/', (req, res, next) => {
+    res.status(200).json(rpsls(req.body.shot));
+})
+
+// 10. rps single param endpoint 
+app.get('/app/rps/play/:shot(rock|paper|scissors)/', (req, res, next) => {
+    res.status(200).json(rps(req.params.shot));
+})
+
+// 11. rpsls single param endpoint 
+app.get('/app/rpsls/play/:shot(rock|paper|scissors|lizard|spock)/', (req, res, next) => {
+    res.status(200).json(rps(req.params.shot));
+})
+
+// 12. Default API endpoint that returns 404 Not found for any endpoints that are not defined.
+app.use(function(req, res){
+    const statusCode = 404
+    const statusMessage = 'NOT FOUND'
+    res.status(statusCode).end(statusCode+ ' ' +statusMessage)
+});
+
 const server = app.listen(port)
 // Create a log entry on start
 let startlog = new Date().toISOString() + ' HTTP server started on port ' + port + '\n'
@@ -101,4 +157,6 @@ process.on('SIGINT', () => {
             console.info('\n' + stoppedlog)
         }    
     })
+
+
 })
