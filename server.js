@@ -4,6 +4,8 @@
 import { createRequire } from 'node:module';
 import {rps, rpsls} from "./lib/rpsls.js";
 
+//CHECK
+
 const require = createRequire(import.meta.url);
 // The above two lines allow us to use ES methods and CJS methods for loading
 // dependencies.
