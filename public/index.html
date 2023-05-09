@@ -6,10 +6,41 @@
         <script src="scripts.js"></script>
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body>
 
     <!-- Your interface markup goes here -->
     <!-- For interface examples, look in the `/examples/` directory in the root of your starter code repo. -->
+<!-- This is the beginning of the stuff you can see -->
+
+<body>
+    <!-- Make some buttons that call functions when you click them.  -->
+
+    <!-- HEADER / LABELS -->
+    <nav>
+      <button id="refreshnav" onclick="refreshNav()" class="active">Refresh!</button>
+      <button id="rps" onclick="singleNav()">RPS</button>
+      <button id="rpsls" onclick="multiNav()">RPSLS</button>
+    </nav>
+
+    <div class=container>
+      <h1>Let's Play! </h1>
+      <h2>Rock Paper Scissors</h2>
+
+        <!-- DROPDOWN MENU -->
+
+        <label>Select a mode:</label>
+        <form>
+        <select onchange = "changeMode(this)">
+          <option value="opp">Opponent</option>
+          <option value="single">Single Player</option>
+        </select>
+    </form>
+        
+    <input type="submit" id="shoot" value="Shoot!">
+
+      <!-- CHOICES FOR OPPONENT PLAY -->
+
+      <h2>Choose...</h2>
+    </div>
 
     </body>
 </html>

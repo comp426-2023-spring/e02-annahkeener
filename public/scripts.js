@@ -2,10 +2,14 @@
 // check out the coin-server example from a previous COMP 426 semester.
 // https://github.com/jdmar3/coinserver
 
+const refreshnav = document.getElementById("coin")
+
+coin.addEventListener("click", flipCoin)
+
 // Set up an asynchronous function so that it will await a response.
 async function rpsOpp() {
     // Build up the endpoint URL
-        const endpoint = "/app/"
+        const endpoint = "/app/play/"
     // Create url
         const url = document.baseURI + endpoint;
     // This sends a GET request to the API endpoint and waits for a response
@@ -24,7 +28,7 @@ async function rpsOpp() {
 
 async function rpslsOpp() {
     // Build up the endpoint URL
-        const endpoint = "/app/"
+        const endpoint = "/app/rpsls/play/"
     // Create url
         const url = document.baseURI + endpoint;
     // This sends a GET request to the API endpoint and waits for a response
@@ -42,7 +46,7 @@ async function rpslsOpp() {
 
 async function rpsSingle() {
     // Build up the endpoint URL
-        const endpoint = "/app/"
+        const endpoint = "/app/rps/"
     // Create url
         const url = document.baseURI + endpoint;
     // This sends a GET request to the API endpoint and waits for a response
@@ -61,7 +65,7 @@ async function rpsSingle() {
 
     async function rpslsSingle() {
     // Build up the endpoint URL
-        const endpoint = "/app/"
+        const endpoint = "/app/rpsls/"
     // Create url
         const url = document.baseURI + endpoint;
     // This sends a GET request to the API endpoint and waits for a response
@@ -76,3 +80,15 @@ async function rpsSingle() {
 
                     });
                 };     
+
+var shoot = document.getElementById('shoot');
+
+shoot.addEventListener("click", rpsSingle())
+
+function changeMode(mode) {
+    if (mode.value == "opp") {
+        shoot.style.display == 'none'
+    } else {
+      
+    }
+}
