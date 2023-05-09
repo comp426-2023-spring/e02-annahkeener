@@ -2,6 +2,8 @@
 // Create require function 
 // https://nodejs.org/docs/latest-v18.x/api/module.html#modulecreaterequirefilename
 import { createRequire } from 'node:module';
+import {rps, rpsls} from "./lib/rpsls.js";
+
 const require = createRequire(import.meta.url);
 // The above two lines allow us to use ES methods and CJS methods for loading
 // dependencies.
@@ -71,7 +73,6 @@ app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:htt
 // Serve static files
 const staticpath = args.stat || args.s || process.env.STATICPATH || path.join(__dirname, 'public')
 app.use('/', express.static(staticpath))
-// Create app listener
 
 
 // 3. READ (HTTP method GET) at root endpoint /app/
@@ -128,7 +129,9 @@ app.use(function(req, res){
     res.status(statusCode).end(statusCode+ ' ' +statusMessage)
 });
 
+// Create app listener
 const server = app.listen(port)
+
 // Create a log entry on start
 let startlog = new Date().toISOString() + ' HTTP server started on port ' + port + '\n'
 // Debug echo start log entry to STDOUT
